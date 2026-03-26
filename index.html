@@ -1,263 +1,302 @@
-```html
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ZAI OFFICIAL — Prompt (Gemini / AI Studio)</title>
-  <style>
-    :root{
-      --bg:#0b0f17;
-      --panel:#121a2a;
-      --text:#e9eefc;
-      --muted:#b8c3e6;
-      --accent:#6aa6ff;
-      --border:rgba(255,255,255,.12);
-    }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:linear-gradient(180deg, var(--bg), #070a10);
-      color:var(--text);
-    }
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:24px;
-    }
-    header{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      align-items:flex-end;
-      justify-content:space-between;
-      margin-bottom:16px;
-    }
-    h1{
-      font-size:20px;
-      margin:0;
-      letter-spacing:.2px;
-    }
-    p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
-    }
-    .panel{
-      background:rgba(18,26,42,.75);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
-      box-shadow: 0 8px 40px rgba(0,0,0,.35);
-    }
-    .controls{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:flex-end;
-    }
-    button{
-      appearance:none;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:600;
-      font-size:13px;
-    }
-    button:hover{ border-color: rgba(106,166,255,.55); }
-    .status{
-      font-size:12px;
-      color:var(--muted);
-      min-height:18px;
-    }
-    textarea{
-      width:100%;
-      min-height:68vh;
-      resize:vertical;
-      box-sizing:border-box;
-      margin-top:12px;
-      padding:14px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:rgba(0,0,0,.25);
-      color:var(--text);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size:13px;
-      line-height:1.45;
-      outline:none;
-    }
-    textarea:focus{ border-color: rgba(106,166,255,.75); }
-    .hint{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
-    }
-    code.inline{
-      background:rgba(255,255,255,.06);
-      border:1px solid var(--border);
-      padding:2px 6px;
-      border-radius:8px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size:12px;
-      color:var(--text);
-    }
-    footer{
-      margin-top:14px;
-      color:var(--muted);
-      font-size:12px;
-    }
-    a{ color:var(--accent); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAI OFFICIAL | Premium GAMING Templates & Wallpapers</title>
+    
+    <!-- Tailwind CSS (CDN) for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome (CDN) for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Rajdhani (Gaming feel) and Inter (Clean text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config & Custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        gaming: ['Rajdhani', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        zaiblue: '#00d2ff',
+                        zaipurple: '#3a7bd5',
+                        darkbg: '#0B0C10',
+                        cardbg: '#1F2833',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0B0C10; color: #ffffff; }
+        .neon-text { text-shadow: 0 0 10px rgba(0, 210, 255, 0.7); }
+        .neon-btn { box-shadow: 0 0 15px rgba(58, 123, 213, 0.5); transition: all 0.3s ease; }
+        .neon-btn:hover { box-shadow: 0 0 25px rgba(0, 210, 255, 0.8); transform: translateY(-2px); }
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(11, 12, 16, 0.3), rgba(11, 12, 16, 1)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
+<body class="font-sans antialiased">
 
-<body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>ZAI OFFICIAL — Build Prompt (Google AI Studio / Gemini)</h1>
-        <p>Copy the prompt below and paste into Google AI Studio (Gemini 3.0 Pro) or Gravity.</p>
-      </div>
-      <div class="controls">
-        <button id="copyBtn" type="button">Copy Prompt</button>
-        <button id="selectBtn" type="button">Select All</button>
-      </div>
-    </header>
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed w-full z-50 bg-darkbg/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-gaming text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-zaiblue to-zaipurple neon-text tracking-wider">
+                        ZAI OFFICIAL
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-zaiblue transition px-3 py-2 rounded-md font-medium text-sm">Home</a>
+                        <a href="#shop" class="hover:text-zaiblue transition px-3 py-2 rounded-md font-medium text-sm">Shop</a>
+                        <a href="#about" class="hover:text-zaiblue transition px-3 py-2 rounded-md font-medium text-sm">About</a>
+                        <a href="#connect" class="hover:text-zaiblue transition px-3 py-2 rounded-md font-medium text-sm">Connect</a>
+                    </div>
+                </div>
+                <!-- Cart Icon -->
+                <div class="flex items-center">
+                    <button class="relative p-2 text-gray-300 hover:text-white transition">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">2</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <div class="panel">
-      <div class="status" id="status"></div>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-bg pt-32 pb-20 md:pt-48 md:pb-32 flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="font-gaming text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Elevate Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-zaiblue to-zaipurple">GAMING Stream</span> & Setup
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                Premium Gaming streaming templates, animated overlays, and exclusive 4K desktop/mobile wallpapers.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#shop" class="neon-btn bg-gradient-to-r from-zaiblue to-zaipurple text-white font-bold py-4 px-8 rounded-lg text-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-fire"></i> Shop Templates
+                </a>
+                <a href="#shop" class="border border-gray-500 hover:border-zaiblue hover:text-zaiblue transition text-white font-bold py-4 px-8 rounded-lg text-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-image"></i> Free Wallpapers
+                </a>
+            </div>
+        </div>
+    </section>
 
-      <textarea id="prompt" spellcheck="false">
-You are a senior conversion-focused web strategist + UX architect + copywriter. Create a complete, high-converting website structure plan for a digital-download store.
+    <!-- SHOP SECTION -->
+    <section id="shop" class="py-20 bg-darkbg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-gaming text-4xl font-bold mb-2">Trending Drops</h2>
+            <p class="text-gray-400 mb-10">Top-selling overlays and wallpapers in India right now.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product 1 -->
+                <div class="bg-cardbg rounded-xl overflow-hidden border border-gray-800 hover:border-zaiblue transition duration-300 group">
+                    <div class="relative h-48 bg-gray-700">
+                        <img src="https://placehold.co/600x400/1F2833/00d2ff?text=Chou+Overlay+Preview" alt="Chou Template" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                        <span class="absolute top-3 left-3 bg-zaipurple text-xs font-bold px-2 py-1 rounded">STREAM PACK</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-gaming text-xl font-bold mb-1">Chou Cyberpunk Overlay</h3>
+                        <p class="text-gray-400 text-sm mb-4">Includes Alerts, Panels & Screens.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-white">₹399</span>
+                            <button class="bg-white text-black hover:bg-zaiblue hover:text-white transition font-bold py-2 px-4 rounded flex items-center gap-2 text-sm">
+                                <i class="fas fa-bolt"></i> Buy (UPI)
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-Project details:
-- Brand/site name: ZAI OFFICIAL
-- Niche: MLBB (Mobile Legends: Bang Bang) content
-- Products: MLBB wallpapers + live streaming templates (overlays/scenes/starting-soon/BRB/ending/alerts/panels etc.)
-- Currency: Indian Rupee (₹ INR) for all pricing and UI examples
-- Delivery: instant digital downloads
-- Include a Connect section with an email icon and a clickable mailto link using this placeholder: {{EMAIL_ADDRESS}}
-- The output must be practical and build-ready (clear sections, page list, conversion elements, and recommended content).
+                <!-- Product 2 -->
+                <div class="bg-cardbg rounded-xl overflow-hidden border border-gray-800 hover:border-zaiblue transition duration-300 group">
+                    <div class="relative h-48 bg-gray-700">
+                        <img src="https://placehold.co/600x400/1F2833/00d2ff?text=Gusion+Wallpaper" alt="Gusion Wallpaper" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                        <span class="absolute top-3 left-3 bg-green-600 text-xs font-bold px-2 py-1 rounded">4K WALLPAPER</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-gaming text-xl font-bold mb-1">Gusion Epic Skin Art</h3>
+                        <p class="text-gray-400 text-sm mb-4">Desktop & Mobile Versions.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-white">₹99</span>
+                            <button class="bg-white text-black hover:bg-zaiblue hover:text-white transition font-bold py-2 px-4 rounded flex items-center gap-2 text-sm">
+                                <i class="fas fa-bolt"></i> Buy (UPI)
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-Requirements for your output (produce in clean Markdown with headings):
-1) Brand & conversion goals
-   - Primary KPI (purchases), secondary KPIs (email signups, bundle uptake, repeat purchases)
-   - Target audience segments (MLBB players, streamers, creators in India)
+                <!-- Product 3 -->
+                <div class="bg-cardbg rounded-xl overflow-hidden border border-gray-800 hover:border-zaiblue transition duration-300 group">
+                    <div class="relative h-48 bg-gray-700">
+                        <img src="https://placehold.co/600x400/1F2833/00d2ff?text=Fanny+Animated+Alerts" alt="Fanny Template" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                        <span class="absolute top-3 left-3 bg-zaipurple text-xs font-bold px-2 py-1 rounded">ANIMATED</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-gaming text-xl font-bold mb-1">Fanny Skylark Alerts</h3>
+                        <p class="text-gray-400 text-sm mb-4">WebM files, instant setup.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-white">₹249</span>
+                            <button class="bg-white text-black hover:bg-zaiblue hover:text-white transition font-bold py-2 px-4 rounded flex items-center gap-2 text-sm">
+                                <i class="fas fa-bolt"></i> Buy (UPI)
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-2) Full sitemap / information architecture
-   - Header navigation + footer navigation
-   - Collections (Wallpapers, Streaming Templates, Bundles, Freebies, How it works, Reviews, FAQ/Support, Contact/Connect)
-   - Include policy pages needed for digital goods
+                <!-- Product 4 -->
+                <div class="bg-cardbg rounded-xl overflow-hidden border border-gray-800 hover:border-zaiblue transition duration-300 group">
+                    <div class="relative h-48 bg-gray-700">
+                        <img src="https://placehold.co/600x400/1F2833/00d2ff?text=Free+MLBB+Pack" alt="Free Pack" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                        <span class="absolute top-3 left-3 bg-blue-600 text-xs font-bold px-2 py-1 rounded">FREEBIE</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-gaming text-xl font-bold mb-1">Starter Wallpaper Pack</h3>
+                        <p class="text-gray-400 text-sm mb-4">5 High-Res Mobile Legends Art.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-400">FREE</span>
+                            <button class="border border-gray-500 hover:border-white transition font-bold py-2 px-4 rounded flex items-center gap-2 text-sm">
+                                <i class="fas fa-download"></i> Get Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-3) Page-by-page structure (wireframe-level)
-   For each page, list sections in order, with:
-   - Section name
-   - Purpose (conversion role)
-   - Key UI elements
-   - Suggested copy snippets (short)
-   Pages to cover:
-   - Home
-   - Shop / Category page
-   - Product detail page
-   - Bundles page
-   - Freebies / lead magnet page
-   - Cart
-   - Checkout (India-first)
-   - Thank-you / download delivery page
-   - Account / My Downloads
-   - Reviews page
-   - FAQ/Support page
-   - Contact/Connect page
+            </div>
+        </div>
+    </section>
 
-4) Product page conversion blueprint
-   - Exact elements to include (gallery, previews, “what’s included”, formats, compatibility, license, FAQs, upsells, trust badges)
-   - 3 recommended upsell/cross-sell patterns
-   - Pricing presentation in ₹ (including bundles and “save ₹X”)
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-cardbg border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2">
+                <h2 class="font-gaming text-4xl font-bold mb-6">About <span class="text-zaiblue">ZAI OFFICIAL</span></h2>
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    Welcome to ZAI OFFICIAL. I create top-tier graphics, overlays, and wallpapers tailored specifically for MLBB creators to make your streams stand out. Whether you're a pro pushing Mythical Glory or a casual streamer, a premium look drives more viewers.
+                </p>
+                <ul class="space-y-4 text-gray-300">
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-cloud-download-alt text-zaiblue text-xl w-6"></i>
+                        <span><strong>Instant Download:</strong> Files are sent to your email immediately after payment.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-desktop text-zaipurple text-xl w-6"></i>
+                        <span><strong>OBS/Streamlabs Compatible:</strong> Optimized for all major streaming software.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-paint-brush text-zaiblue text-xl w-6"></i>
+                        <span><strong>100% Original Designs:</strong> Unique art you won't find anywhere else.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                <!-- Abstract gaming shape placeholder -->
+                <div class="w-72 h-72 rounded-full border-4 border-dashed border-gray-600 flex items-center justify-center relative shadow-[0_0_50px_rgba(0,210,255,0.2)]">
+                    <i class="fas fa-gamepad text-8xl text-gray-700"></i>
+                    <div class="absolute w-full h-full rounded-full border border-zaiblue animate-ping opacity-20"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-5) Trust, compliance, and MLBB/IP disclaimer
-   - Provide a footer disclaimer text: “ZAI OFFICIAL is not affiliated with Moonton/MLBB…”
-   - Provide a clear digital-product refund policy outline (general, not legal advice)
-   - Usage license summary (personal/stream use; no resale/reupload)
+    <!-- CONNECT / CONTACT SECTION -->
+    <section id="connect" class="py-20 bg-darkbg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-gaming text-4xl font-bold mb-2">Connect With ZAI</h2>
+                <p class="text-gray-400">Need a custom overlay or have an issue with your order? Reach out.</p>
+            </div>
 
-6) Email capture + retention system
-   - Freebie funnel flow
-   - Abandoned cart, post-purchase, and new-drop email sequence outlines (subject ideas + timing)
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-cardbg p-8 md:p-12 rounded-2xl border border-gray-800">
+                
+                <!-- Contact Form -->
+                <div>
+                    <h3 class="font-gaming text-2xl font-bold mb-6">Send a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zaiblue transition">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zaiblue transition">
+                        </div>
+                        <div>
+                            <textarea rows="4" placeholder="How can I help you?" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zaiblue transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-zaipurple hover:bg-zaiblue text-white font-bold py-3 rounded-lg transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
 
-7) SEO plan
-   - URL structure
-   - Category keyword themes
-   - Product page SEO checklist
-   - Optional blog topics (10 ideas) tailored to MLBB wallpapers + streaming overlays
+                <!-- Direct Connect (Email Section) -->
+                <div class="flex flex-col justify-center">
+                    <h3 class="font-gaming text-2xl font-bold mb-6">Reach Out Directly</h3>
+                    <p class="text-gray-400 mb-8">Prefer direct email? Click the link below to open your mail app and message me instantly.</p>
+                    
+                    <!-- CRUCIAL EMAIL LINK -->
+                    <a href="mailto:yourmail@gmail.com" class="group flex items-center gap-4 bg-gray-900 p-6 rounded-xl border border-gray-700 hover:border-zaiblue transition duration-300 cursor-pointer">
+                        <div class="bg-gradient-to-br from-zaiblue to-zaipurple w-14 h-14 rounded-full flex items-center justify-center group-hover:scale-110 transition duration-300">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Email Me At</p>
+                            <p class="text-xl font-bold text-white group-hover:text-zaiblue transition">quincydarth07@gmail.com</p>
+                        </div>
+                    </a>
 
-8) Design system guidance
-   - Color palette suggestion (gaming aesthetic), typography, button styles
-   - Card/grid rules for products
-   - Mobile-first considerations (speed + tap targets)
+                    <div class="mt-8 flex gap-4">
+                        <a href="https://www.instagram.com/im_dmehra" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center hover:bg-zaiblue hover:text-white transition">
+    <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center hover:bg-zaipurple hover:text-white transition">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@ZaiGamingStreem" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center hover:bg-zaiblue hover:text-white transition">
+    <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
 
-9) Technical build notes (platform-agnostic but India-ready)
-   - Recommended payment options for INR (e.g., UPI via Razorpay) and how to show them as trust signals
-   - Digital delivery method options (account downloads + email link)
-   - Analytics events to track (view_item, add_to_cart, begin_checkout, purchase, lead)
+            </div>
+        </div>
+    </section>
 
-10) Connect section requirement (must include)
-   - Provide the exact HTML snippet for the footer “Connect” block with:
-     - email icon (use an inline SVG or a simple icon approach)
-     - clickable mailto:{{EMAIL_ADDRESS}}
-     - accessible labels (aria-label)
-   - Also provide a plain-text version for platforms that don’t allow HTML.
-
-Constraints:
-- Keep the plan optimized for conversion and clarity.
-- Assume visitors are mostly mobile users in India.
-- Ensure every critical page has at least one strong CTA.
-- Use ₹ INR examples consistently.
-- Use placeholders where needed (e.g., {{EMAIL_ADDRESS}}, {{UPI_PROVIDER}}, {{PRODUCT_NAME}}).
-      </textarea>
-
-      <div class="hint">
-        Tip: Replace <code class="inline">{{EMAIL_ADDRESS}}</code> with your real email before generating.
-      </div>
-    </div>
-
-    <footer>
-      File format: HTML. Save as <code class="inline">zai-official-prompt.html</code> and open in any browser.
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 border-t border-gray-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h4 class="font-gaming text-2xl font-bold text-white tracking-wider mb-2">ZAI OFFICIAL</h4>
+                <p class="text-gray-500 text-sm">© 2024 All Rights Reserved. Digital gaming assets.</p>
+            </div>
+            
+            <div class="text-center md:text-right">
+                <p class="text-gray-400 text-sm mb-3">Accepted Secure Payments</p>
+                <div class="flex justify-center md:justify-end gap-3 text-2xl text-gray-600">
+                    <i class="fas fa-qrcode hover:text-white transition" title="UPI"></i>
+                    <i class="fab fa-google-pay hover:text-white transition" title="GPay"></i>
+                    <!-- FontAwesome doesn't have Paytm/PhonePe natively, using generic wallet icons -->
+                    <i class="fas fa-wallet hover:text-white transition" title="Wallets"></i>
+                    <i class="fab fa-cc-visa hover:text-white transition" title="Cards"></i>
+                </div>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    const promptEl = document.getElementById('prompt');
-    const statusEl = document.getElementById('status');
-    const copyBtn = document.getElementById('copyBtn');
-    const selectBtn = document.getElementById('selectBtn');
-
-    function setStatus(msg){
-      statusEl.textContent = msg;
-      clearTimeout(setStatus._t);
-      setStatus._t = setTimeout(()=>statusEl.textContent = "", 2200);
-    }
-
-    selectBtn.addEventListener('click', () => {
-      promptEl.focus();
-      promptEl.select();
-      setStatus("Selected.");
-    });
-
-    copyBtn.addEventListener('click', async () => {
-      try{
-        await navigator.clipboard.writeText(promptEl.value);
-        setStatus("Copied to clipboard.");
-      }catch(e){
-        // Fallback: select text for manual copy
-        promptEl.focus();
-        promptEl.select();
-        setStatus("Clipboard blocked. Text selected—press Ctrl/Cmd+C.");
-      }
-    });
-  </script>
 </body>
 </html>
-```
